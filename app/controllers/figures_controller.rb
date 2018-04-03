@@ -10,8 +10,9 @@ class FiguresController < ApplicationController
     end
 
     post '/figures/' do
-        @figure = Figure.find_or_create_by(params(:name))
+        @figure = Figure.create(params(:name))
         @figure.save
+        erb :'figures/show'
     end
 
 end
