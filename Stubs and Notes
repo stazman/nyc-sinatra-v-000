@@ -1,0 +1,4 @@
+    <%# <label>Name of Landmark</label>
+    <input type="text" name="landmark[name]" id="landmark_name">Name of Landmark</input>
+    <input type="text" value="landmark[year_completed]" id="landmark[year_completed]">Year Landmark Completed</input>
+    <br> %>

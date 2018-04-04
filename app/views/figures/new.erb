@@ -1,8 +1,27 @@
 <p>Create a Figure</p>
 
 <form>
-    <input action='figures/new' method='POST'>
-    <input type='text' value="figure[name]" id='figure_name'>Name of Figure</input>
-    <input type='text' value="landmark[name]" id='landmark_name'>Name of Landmark</input>
-    <input type='submit' id='Create New Figure'>
+    <input action="/figures" method="POST">
+    <label>Figure Name</label>
+    <input type="text" name="figure[name]" id="figure[name]">Name of Figure</input>
+    <br>
+    <label>Landmarks</label>
+    <% Landmark.all.each do |landmark|
+        <input id="<%= landmark_<%=landmark.id%>" type="checkbox" name="figure[landmark_ids][]" value="<%= landmark.id =>"><%= landmark.name %></input>
+    <%# ??? Why figure[landmark_ids][] when there are no arrays#%>
+    <% end %>
+    <br>
+    <label>Create a New Landmark</label>
+    <input type="text" name="landmark[name]" id="landmark_<%=landmark.id%>">Name of Landmark</input>
+    <input type="text" name="landmark[year_completed]" id="landmark_year_completed">Year Landmark Completed</input>
+<br>
+    <label>Titles</label>
+    <% Title.all.each do |title|
+        <input id="<%= title.name %>" type="checkbox" name="figure[title_ids][]" value="<%= title.id =>"><%= title.name %></input>
+    <% end %>
+<br>
+    <label>Create a New Title</label>
+    <input type="text" name="title[name]" id="title_name">
+<br>
+    <input type="submit" id="Create New Figure">
 </form>
