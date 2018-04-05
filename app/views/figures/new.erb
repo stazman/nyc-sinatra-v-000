@@ -1,35 +1,39 @@
 <p>Create a Figure</p>
 <br>
 <form action="/figures" method="POST">
-    <input type="text" name="figure[name]" id="figure[name]">
+    <label>Name</label>
+    <input type="text" name="figure_name" id="figure[name]">
     <br>
     <br>
-    <label>Landmarks</label>
+    <label><h3>Titles</h3></label>
+    <% Title.all.each do |title|
+    <label><%= title.name %></label>
+    <input id="title_<%=title.id%>" type="checkbox" name="figure[title_ids][]" value="<%= title.id %>"><%= title.id %><%# ??? why not title.name?#%><br>
+    <% end %>
+    <br>
+    <br>
+    <label><h3>Create a New Title:</h3></label>
+    <br>
+    <label><h4>Title:</h4></label>
+    <input type="text" id="new_title" name="title[name]">
+    <br>
+    <br>
+    <label><h3>Landmarks</h3></label>
     <% Landmark.all.each do |landmark|
-        <input id="landmark_<%=landmark.id%>" type="checkbox" name="figure[landmark_ids][]" value="<%= landmark.id =>"><%= landmark.name %></input>
+    <label><%= landmark.name %></label>
+        <input id="landmark_<%=landmark.id%>" type="checkbox" name="figure[landmark_ids][]" value="<%=landmark.id%>"><br>
     <%# ??? Why figure[landmark_ids][] when there are no arrays#%>
     <% end %>
     <br>
     <br>
-    <label>Create a New Landmark</label>
+    <label><h3>Create a New Landmark</label></h3>
     <br>
     <label>Name:</label>
-    <input type="text" name="landmark[name]" id="landmark_<%=landmark.id%>">
+    <input type="text" id="new_landmark" name="landmark[name]">
     <br>
     <label>Year:</label>
-    <input type="text" name="landmark[year_completed]" id="new_landmark_year_completed">
+    <input type="text" name="landmark[year_completed]">
     <br>
-    <br>
-    <label>Titles</label>
-    <% Title.all.each do |title|
-    <input id="title_<%=title.id %>" type="checkbox" name="figure[title_ids][]" value="<%= title.id =>"><%= title.name %></input>
-    <% end %>
-    <br>
-    <br>
-    <label>Create a New Title</label>
-    <br>
-    <label>Title:</label>
-    <input type="text" name="title[name]" id="new_title">
     <br>
     <input type="submit" id="Create New Figure">
 </form>
