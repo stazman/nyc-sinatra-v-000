@@ -42,3 +42,15 @@ class AddFigureIdToLandmarks < ActiveRecord::Migration
    end
 end
 
+<% @figures.all.each do |figure|%>
+<td align="center"><a href="/figures/<%= figure.id %>"><%= figure.name %></a>
+      <ul>
+        <% @figure.titles.each do |title|%>
+        <li><%=title.name%></li>
+        <%end%>
+      </ul>
+     </tr> </td>
+  <% end %>
+</table>
+<br>
+<a class="button" href="/">Go Home</a>

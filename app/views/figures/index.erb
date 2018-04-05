@@ -1,16 +1,12 @@
-<table>
-    <p><h1>All the Figures</h1></p>
+<p><h1>All the Figures</h1></p>
 
 <% @figures.all.each do |figure|%>
-<td align="center"><a href="/figures/<%= figure.id %>"><%= figure.name %></a>
-      <ul>
-        <%figure.titles.each do |title|%>
-        <li><%=title.name%></li>
+  <a href="/figures/<%= figure.id %>"><%= figure.name %></a>
+  <%=binding.pry%>
+  <% figure.titles.each do |title|%><br>
+        <%=title.name%>
         <%end%>
-      </ul>
-     </tr> </td>
   <% end %>
-</table>
 <br>
 <a class="button" href="/">Go Home</a>
 <%# <%= figure.name #%>

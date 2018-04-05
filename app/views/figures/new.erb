@@ -6,7 +6,7 @@
     <br>
     <br>
     <label><h3>Titles</h3></label>
-    <% Title.all.each do |title|
+    <% Title.all.each do |title| %>
     <label><%= title.name %></label>
     <input id="title_<%=title.id%>" type="checkbox" name="figure[title_ids][]" value="<%= title.id %>"><%= title.id %><%# ??? why not title.name?#%><br>
     <% end %>
@@ -19,7 +19,7 @@
     <br>
     <br>
     <label><h3>Landmarks</h3></label>
-    <% Landmark.all.each do |landmark|
+    <% Landmark.all.each do |landmark| %>
     <label><%= landmark.name %></label>
         <input id="landmark_<%=landmark.id%>" type="checkbox" name="figure[landmark_ids][]" value="<%=landmark.id%>"><br>
     <%# ??? Why figure[landmark_ids][] when there are no arrays#%>
