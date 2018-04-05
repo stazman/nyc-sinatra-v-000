@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'pry'
 
 describe FiguresController do
   before do
@@ -6,6 +7,7 @@ describe FiguresController do
     kanye = Figure.create(:name => "Kanye")
     bqe = Landmark.create(name: 'BQE', year_completed: 1961)
     mr_president = Title.create(name: "Mr. President")
+    # binding.pry
     bqe.figure = queenb
     bqe.save
   end

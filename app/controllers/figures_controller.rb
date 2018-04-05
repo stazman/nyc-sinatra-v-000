@@ -12,7 +12,7 @@ class FiguresController < ApplicationController
     end
 
     get '/figures/:id' do
-        @figure = Figure.find_or_create_by(params(:id))
+        @figure = Figure.find(params(:id))
         erb :'/figures/show'
     end
 
@@ -34,11 +34,27 @@ class FiguresController < ApplicationController
        
         # @figure.landmark_ids = params[:landmarks]
         # ??? why in other labs and not this one acc. to solution?
-        # ??? how does params[:landmarks] work?
         # @figure.title_ids = params[:titles]
+
+        # ??? how does params[:landmarks] work?
         @figure.save          
         redirect "/figures/#{@figure.id}"
     end
 
-    
+    get '/figures/:id/edit' do
+        @figure = Figure.find(params["id"])
+        erb :'figures/edit'
+    end
+
+    patch '/figures/:id' do
+        @figure = Figure.find(params["id"])
+        @figure.update(params["figure"]["name"])
+        @figure.save
+        @figure.landmark = Landmark.find(params["id"])
+        @figure.landmark.update(params["landmark"]["name"])
+        @figure.landmark.save
+        @figure.title.update(params["title"]["name"])
+        @figure.landmark.save
+        redirect "/figures/#{@figure.id}"
+    end     
 end
