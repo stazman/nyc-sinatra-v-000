@@ -8,6 +8,8 @@ ActiveRecord::Base.establish_connection(
   :database => "db/nyc#{ENV['SINATRA_ENV']}.sqlite"
 )
 
+# disable :show_exceptions
+
 require_relative "../app/controllers/application_controller.rb"
 
 Dir[File.join(File.dirname(__FILE__), "../app/models", "*.rb")].each {|f| require f}
