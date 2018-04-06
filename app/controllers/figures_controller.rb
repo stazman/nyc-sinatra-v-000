@@ -26,7 +26,7 @@ class FiguresController < ApplicationController
         
         # ??? why figure and not name in solution?
         if !params["new_title"].empty?
-            @figure.titles << Title.create(:name => params["new_title"])
+            @figure.titles << Title.create(name: params["new_title"])
         end
 
         if !params["landmark"]["name"].empty?
