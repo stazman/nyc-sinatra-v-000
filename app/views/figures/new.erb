@@ -11,11 +11,10 @@
     <input id="title_<%=title.id%>" type="checkbox" name="figure[title_ids][]" value="<%= title.id %>"><%= title.id %><%# ??? why not title.name?#%><br>
     <% end %>
     <br>
-    <br>
     <label><h3>Create a New Title:</h3></label>
     <br>
     <label><h4>Title:</h4></label>
-    <input type="text" id="new_title" name="title[name]">
+    <input type="text" name="new_title" id="title[name]">
     <br>
     <br>
     <label><h3>Landmarks</h3></label>
