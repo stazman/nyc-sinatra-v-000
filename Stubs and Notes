@@ -1,3 +1,41 @@
+    
+<h1>Update Pet</h1>
+
+<form action="/pets/<%=@pet.id%>" method="POST">
+
+  <label>Name:</label>
+ 
+  <br></br>
+ 
+        <input type="text" name="pet[name]" id="pet_name" value="<%=@pet.name%>">
+
+          <br></br>
+ 
+  <label>Choose an existing owner:</label>
+ 
+  <br></br>
+ 
+  <%Owner.all.each do |owner|%>
+    <input type="radio" name="pet[owner_id]" value="<%=owner.id%>" id="<%=owner.id%>" <%="checked" if @pet.owner.name == owner.name%>><%=owner.name%></input>
+  <%end%>
+  
+  <br></br>
+
+<label>and/or, create a new owner:</label>
+ 
+  <br></br>
+  
+  <input type="text" name="owner[name]" id="owner_name">
+  
+  <br></br>
+  
+  <input type="submit" value="Update Pet">
+</form>
+    
+    
+    
+    
+    
     <%# <label>Name of Landmark</label>
     <input type="text" name="landmark[name]" id="landmark_name">Name of Landmark</input>
     <input type="text" value="landmark[year_completed]" id="landmark[year_completed]">Year Landmark Completed</input>
@@ -68,3 +106,34 @@ end
         # @figure.title_ids = params[:titles]
 
         # ??? how does params[:landmarks] work?
+
+                                    # , title_ids: params["figure"]["title_ids"], landmark_ids: params["figure"]["landmark_ids"])
+
+        # ??? why figure and not name in solution?
+        
+        # @song = Song.create(:name => params['Name'])
+        # # binding.pry
+
+        # @song.genre_ids = params[:genres]
+        # @song.save
+        # flash[:message] = "Successfully created song."
+     
+        # @figure.titles.save
+
+            # post '/figures/:id' do 
+    #     @figure = Figure.find(params[:id])
+    #     @figure.update(params[:figure])
+        
+    #     if !params[:landmark][:name].empty?
+    #         @figure.landmarks << Landmark.create(params[:landmark])
+    #     end
+
+    #     if !params[:title][:name].empty?
+    #         @figure.titles << Title.create(params[:title])
+    #     end
+        
+    #     @figure.save
+    #     redirect to "/figures/#{@figure.id}"
+    # end
+
+

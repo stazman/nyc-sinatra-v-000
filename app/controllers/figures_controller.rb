@@ -22,18 +22,18 @@ class FiguresController < ApplicationController
     end
 
     post '/figures' do
-        @figure = Figure.create(name: params["figure_name"], title_ids: params["figure"]["title_ids"], landmark_ids: params["figure"]["landmark_ids"])
-        
-        # ??? why figure and not name in solution?
-        if !params["new_title"].empty?
-            @figure.titles << Title.create(name: params["new_title"])
-        end
+        # ??? Why does this show the root url /figures ... is it supposed to go back to the index page? 
+        @figure = Figure.create(params["figure"])
 
-        if !params["landmark"]["name"].empty?
-            @figure.landmarks << Landmark.create(:name => params["landmark"]["name"], :year_completed => params["landmark"]["year_completed"])
-        end
-        @figure.save          
-        # @figure.titles.save
+            if !params["title"]["name"].empty?
+                @figure.titles << Title.create(params["title"])
+            end
+            
+            if !params["landmark"]["name"].empty?
+                @figure.landmarks << Landmark.create(params["landmark"])
+            end
+        
+        @figure.save     
         redirect "/figures/#{@figure.id}"
     end
 
@@ -48,20 +48,4 @@ class FiguresController < ApplicationController
         @figure.landmark.save
         redirect "/figures/#{@figure.id}"
     end
-
-    # post '/figures/:id' do 
-    #     @figure = Figure.find(params[:id])
-    #     @figure.update(params[:figure])
-        
-    #     if !params[:landmark][:name].empty?
-    #         @figure.landmarks << Landmark.create(params[:landmark])
-    #     end
-
-    #     if !params[:title][:name].empty?
-    #         @figure.titles << Title.create(params[:title])
-    #     end
-        
-    #     @figure.save
-    #     redirect to "/figures/#{@figure.id}"
-    # end
 end
