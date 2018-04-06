@@ -22,28 +22,18 @@ class FiguresController < ApplicationController
     end
 
     post '/figures' do
-        @figure = Figure.create(:name => params["name"])
+        @figure = Figure.create(name: params["figure_name"], title_ids: params["figure"]["title_ids"], landmark_ids: params["figure"]["landmark_ids"])
+        
         # ??? why figure and not name in solution?
+        if !params["new_title"].empty?
+            @figure.titles << Title.create(:name => params["new_title"])
+        end
+
         if !params["landmark"]["name"].empty?
             @figure.landmarks << Landmark.create(:name => params["landmark"]["name"], :year_completed => params["landmark"]["year_completed"])
         end
-
-        if !params["title"]["name"].empty?
-            @figure.titles << Title.create(:name => params["title"]["name"])
-        end
-
-        # @figure.landmark = Landmark.find_or_create_by(:name => params['landmark']['name'])
-        # @figure.title = Title.find_or_create_by(:name => params['title']['name'])
-        # binding.pry
-        # ??? why not this in solution?
-
-       
-        # @figure.landmark_ids = params[:landmarks]
-        # ??? why in other labs and not this one acc. to solution?
-        # @figure.title_ids = params[:titles]
-
-        # ??? how does params[:landmarks] work?
         @figure.save          
+        # @figure.titles.save
         redirect "/figures/#{@figure.id}"
     end
 
@@ -59,19 +49,19 @@ class FiguresController < ApplicationController
         redirect "/figures/#{@figure.id}"
     end
 
-    post '/figures/:id' do 
-        @figure = Figure.find(params[:id])
-        @figure.update(params[:figure])
+    # post '/figures/:id' do 
+    #     @figure = Figure.find(params[:id])
+    #     @figure.update(params[:figure])
         
-        if !params[:landmark][:name].empty?
-        @figure.landmarks << Landmark.create(params[:landmark])
-        end
+    #     if !params[:landmark][:name].empty?
+    #         @figure.landmarks << Landmark.create(params[:landmark])
+    #     end
 
-        if !params[:title][:name].empty?
-        @figure.titles << Title.create(params[:title])
-        end
+    #     if !params[:title][:name].empty?
+    #         @figure.titles << Title.create(params[:title])
+    #     end
         
-        @figure.save
-        redirect to "/figures/#{@figure.id}"
-    end
+    #     @figure.save
+    #     redirect to "/figures/#{@figure.id}"
+    # end
 end

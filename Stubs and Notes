@@ -54,3 +54,17 @@ end
 </table>
 <br>
 <a class="button" href="/">Go Home</a>
+
+
+
+        # @figure.landmark = Landmark.find_or_create_by(:name => params['landmark']['name'])
+        # @figure.title = Title.find_or_create_by(:name => params['title']['name'])
+        # binding.pry
+        # ??? why not this in solution?
+
+       
+        # @figure.landmark_ids = params[:landmarks]
+        # ??? why in other labs and not this one acc. to solution?
+        # @figure.title_ids = params[:titles]
+
+        # ??? how does params[:landmarks] work?
