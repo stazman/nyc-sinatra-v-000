@@ -117,6 +117,5 @@ describe FiguresController do
 
     expect(page.body).to include("Big Tower")
     expect(@figure.name).to eq("Missy")
-
   end
 end

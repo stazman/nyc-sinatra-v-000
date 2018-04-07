@@ -20,15 +20,17 @@ class LandmarksController < ApplicationController
     end
 
     post '/landmarks' do
-        @landmark = Landmark.create(:name => params['landmarks']['name'])
-        @landmark.figure = Figure.find_or_create_by(:name => params['figures']['name'])
-        @landmark.title = Title.find_or_create_by(:title => params['titles']['name'])
-        @landmark.figure_ids = params[:figures]
-        @landmark.title_ids = params[:titles]
+        @landmark = Landmark.create(params[:landmark])
         @landmark.save          
         redirect "/landmarks/#{@landmark.id}"
         # ??? What's going on here with params[:figures]?
         # ??? Where does figure_ids come from?
+    end
+
+    post '/landmarks/:id' do
+        @landmark = Landmark.find(params[:landmark])
+        
+    
     end
 
 end
