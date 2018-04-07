@@ -148,3 +148,10 @@ end
         redirect "/figures/#{@figure.id}"
     end
 
+<%# <h2>Edit Record for:</h2><br>
+<h1><%= @figure.name %>
+</h1><br>
+ %>
+
+    <label>Add New Person:</label><br>
+    <input type="text" name="figure[name]" id="figure_name">
