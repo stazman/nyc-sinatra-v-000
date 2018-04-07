@@ -155,3 +155,6 @@ end
 
     <label>Add New Person:</label><br>
     <input type="text" name="figure[name]" id="figure_name">
+    <label>Add New Landmark:</label><br>
+    <input type="text" name="landmark[name]" id="new_landmark">
+
