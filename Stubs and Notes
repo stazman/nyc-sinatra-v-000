@@ -136,4 +136,15 @@ end
     #     redirect to "/figures/#{@figure.id}"
     # end
 
+    patch '/figures/:id' do
+        @figure = Figure.find(params["id"])
+        @figure.update(params["figure"]["name"])
+        @figure.save
+        @figure.landmark = Landmark.find(params["id"])
+        @figure.landmark.update(params["landmark"]["name"])
+        @figure.landmark.save
+        @figure.title.update(params["title"]["name"])
+        @figure.landmark.save
+        redirect "/figures/#{@figure.id}"
+    end
 

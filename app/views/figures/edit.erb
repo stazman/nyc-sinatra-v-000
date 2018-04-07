@@ -1,12 +1,16 @@
 
+<h2>Edit Record for:</h2><br>
+<h1><%= @figure.name %></h1><br>
 
+<form action="/figures/:id" method="POST">
+    <h4>Edit Person Name:<h4><br>
+    <input type="text" name="figure[name]" id="figure_name">
 
-<h1>Edit a Person</h1>
-
-<form action="/figures/:id/edit" method="POST">
-    <input type="hidden" value="hidden" name="_method" id="PATCH">
-    <% Figure.all.each do |figure|
-    
-    <input type="checkboxes" name="figure[name]" value="<%= figure.id %>"><%= figure.name %></input>
+    <h4>Edit titles:<h4><br>
+    <% @figure.titles.each do |title| %>
+    <input type="checkboxes" name="title[name]" value="<%= title.id %>"><%= title.name %></input>
+    <% end %>
+    <%# # ??? What is value here?     %>
 </form> 
 
+    <%# <input type="hidden" value="hidden" name="_method" id="PATCH"> %>  
